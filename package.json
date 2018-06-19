@@ -9,6 +9,10 @@
   "scripts": {
     "start": "electron ."
   },
+  "repository": {
+    "url": "git@github.com:jtparrett/luna-app.git",
+    "type": "git"
+  },
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "electron": "^2.0.2",
