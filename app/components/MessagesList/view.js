@@ -31,7 +31,10 @@ const View = ({messages, classes}) => (
 export default compose(
   injectSheet(styles),
   lifecycle({
-    componentWillReceiveProps(){
+    componentDidMount(){
+      foot.scrollIntoView()
+    },
+    componentDidUpdate(){
       if(main.scrollTop >= (main.scrollHeight - main.clientHeight) - 100){
         foot.scrollIntoView()
       }
