@@ -21,14 +21,17 @@ export function removePeer(host){
 export function createPeer(peer, preHost){
   return (dispatch, getState) => {
     const host = preHost || peer.remoteAddress.replace(/^.*:/, '')
-    const {Messages} = getState()
 
     peer.on('data', (r) => {
       try {
         const res = r.toString()
         const data = JSON.parse(res)
 
-        if(data.message && !Messages[data.id]){
+        if(!data.message) return
+
+        const {Messages} = getState()
+        if(!Messages[data.id]){
+          new Notification('Luna Message', { body: data.message })
           dispatch(MessageActions.createMessage(data))
           dispatch(broadcast(res, peer))
         }
