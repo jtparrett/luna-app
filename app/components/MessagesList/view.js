@@ -1,4 +1,5 @@
 import React from 'react'
+import {compose, lifecycle} from 'recompose'
 import injectSheet from 'react-jss'
 
 const styles = {
@@ -14,12 +15,26 @@ const styles = {
   }
 }
 
+
+let foot
+let main
+
 const View = ({messages, classes}) => (
-  <div className={classes.main}>
+  <div className={classes.main} ref={el => main = el}>
     { messages.map((message, i) => (
       <p className={classes.message} key={i}>{message}</p>
     ))}
+    <div ref={el => foot = el} />
   </div>
 )
 
-export default injectSheet(styles)(View)
+export default compose(
+  injectSheet(styles),
+  lifecycle({
+    componentWillReceiveProps(){
+      if(main.scrollTop >= (main.scrollHeight - main.clientHeight) - 100){
+        foot.scrollIntoView()
+      }
+    }
+  })
+)(View)
