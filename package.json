@@ -1,0 +1,25 @@
+{
+  "name": "luna-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "electron-prebuilt-compile": "^2.0.2"
+  },
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "electron": "^2.0.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-jss": "^8.5.1",
+    "react-redux": "^5.0.7",
+    "recompose": "^0.27.1",
+    "redux": "^4.0.0",
+    "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^3.0.1"
+  }
+}
