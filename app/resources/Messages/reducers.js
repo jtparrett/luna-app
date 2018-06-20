@@ -1,10 +1,13 @@
 import {CREATE} from './types'
 
-export default (state = {}, {type, id, message}) => {
+export default (state = {}, {type, id, ...data}) => {
 
   if(type === CREATE){
     return Object.assign({}, state, {
-      [id]: message
+      [id]: {
+        id,
+        ...data
+      }
     })
   }
 

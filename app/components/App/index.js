@@ -2,10 +2,12 @@ import React from 'react'
 import {compose} from 'recompose'
 import injectSheet from 'react-jss'
 import {Provider} from 'react-redux'
+import {HashRouter, Route, Switch} from 'react-router-dom'
 
 import Server from '../../server'
 import store from '../../store'
 import Main from '../Main'
+import Register from '../Register'
 
 const styles = {
   '@global': {
@@ -27,7 +29,12 @@ const styles = {
 
 const App = ({classes}) => (
   <Provider store={store}>
-    <Main />
+    <HashRouter>
+      <Switch>
+        <Route path="/register" component={Register} />
+        <Route exact path="/" component={Main} />
+      </Switch>
+    </HashRouter>
   </Provider>
 )
 

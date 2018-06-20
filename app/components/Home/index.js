@@ -1,34 +1,19 @@
-import React from 'react'
-import injectSheet from 'react-jss'
+import {compose, withHandlers} from 'recompose'
+import {connect} from 'react-redux'
+import {clipboard} from 'electron'
 
-import MessagesList from '../MessagesList'
-import MessageForm from '../MessageForm'
-import PeersList from '../PeersList'
+import View from './view'
 
-const styles = {
-  main: {
-    display: 'flex'
-  },
-  screen: {
-    flex: 1
-  },
-  messageForm: {
-    height: '100vh',
-    display: 'flex',
-    flexDirection: 'column'
-  }
-}
+const mapStateToProps = (state) => ({
+  RSASession: state.Auth.RSASession
+})
 
-const View = ({classes}) => (
-  <div className={classes.main}>
-    <div className={classes.screen}>
-      <div className={classes.messageForm}>
-        <MessagesList />
-        <MessageForm />
-      </div>
-    </div>
-    <PeersList />
-  </div>
-)
-
-export default injectSheet(styles)(View)
+export default compose(
+  connect(mapStateToProps),
+  withHandlers({
+    copyKey: ({RSASession}) => () => {
+      const key = RSASession.exportKey('public')
+      clipboard.writeText(key)
+    }
+  })
+)(View)

@@ -4,7 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
-    "electron-prebuilt-compile": "^2.0.2"
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "electron-prebuilt-compile": "^2.0.2",
+    "electron-rebuild": "^1.7.3"
   },
   "scripts": {
     "start": "electron ."
@@ -16,10 +18,12 @@
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "electron": "^2.0.2",
+    "node-rsa": "^1.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-jss": "^8.5.1",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "recompose": "^0.27.1",
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",

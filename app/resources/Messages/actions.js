@@ -2,18 +2,27 @@ import SHA256 from 'crypto-js/sha256'
 import {CREATE} from './types'
 import {actions as PeerActions} from '../LivePeers'
 
-export function createMessage({id, message}){
+export function createMessage(data){
   return {
     type: CREATE,
-    id, message
+    ...data
   }
 }
 
-export function sendMessage(message){
+export function sendMessage(mes, to){
   return (dispatch, getState) => {
+    const {Auth} = getState()
+
     const time = new Date().getTime()
-    const id = SHA256(message + time).toString()
-    const data = {id, message}
+    const id = SHA256(mes + time).toString()
+    const message = to.encrypt(mes)
+
+    const data = {
+      id, message,
+      to: to.exportKey('public').toString(),
+      from: Auth.RSASession.exportKey('public').toString()
+    }
+
     dispatch(createMessage(data))
     dispatch(PeerActions.broadcast(JSON.stringify(data)))
   }

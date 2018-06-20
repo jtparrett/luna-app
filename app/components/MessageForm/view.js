@@ -10,7 +10,8 @@ const styles = {
     outline: 'none',
     border: 'none',
     width: '100%',
-    fontSize: 12
+    fontSize: 12,
+    boxSizing: 'border-box'
   },
   button: {
     display: 'none'

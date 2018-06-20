@@ -1,19 +1,17 @@
 import {compose, withState} from 'recompose'
 import {connect} from 'react-redux'
-import {actions as PeerActions} from '../../resources/LivePeers'
-import net from 'net'
+import {actions as AuthActions} from '../../resources/Auth'
 
 import View from './view'
 
-const mapDispatchToProps = (dispatch, {host}) => ({
+const mapDispatchToProps = (dispatch, {secretKey}) => ({
   onSubmit: (e) => {
     e.preventDefault()
-    const peer = net.connect({ host, port: 1995 })
-    dispatch(PeerActions.createPeer(peer, host))
+    dispatch(AuthActions.auth(secretKey))
   }
 })
 
 export default compose(
-  withState('host', 'updateHost', ''),
+  withState('secretKey', 'updateSecretKey'),
   connect(null, mapDispatchToProps)
 )(View)

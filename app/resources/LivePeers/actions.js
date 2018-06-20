@@ -31,7 +31,6 @@ export function createPeer(peer, preHost){
 
         const {Messages} = getState()
         if(!Messages[data.id]){
-          new Notification('Luna Message', { body: data.message })
           dispatch(MessageActions.createMessage(data))
           dispatch(broadcast(res, peer))
         }

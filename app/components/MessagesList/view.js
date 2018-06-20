@@ -11,7 +11,8 @@ const styles = {
   message: {
     margin: 0,
     fontSize: 12,
-    padding: 5
+    padding: 5,
+    wordWrap: 'break-word'
   }
 }
 
